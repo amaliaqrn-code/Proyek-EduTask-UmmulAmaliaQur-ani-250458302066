@@ -26,10 +26,10 @@ class AssignmentResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'admin';
 
-    public static function form(Schema $schema): Schema
-    {
-        return AssignmentForm::configure($schema);
-    }
+    // public static function form(Schema $schema): Schema
+    // {
+    //     return AssignmentForm::configure($schema);
+    // }
 
     public static function infolist(Schema $schema): Schema
     {
@@ -54,9 +54,7 @@ class AssignmentResource extends Resource
     {
         return [
             'index' => ListAssignments::route('/'),
-            'create' => CreateAssignment::route('/create'),
             'view' => ViewAssignment::route('/{record}'),
-            'edit' => EditAssignment::route('/{record}/edit'),
         ];
     }
 }

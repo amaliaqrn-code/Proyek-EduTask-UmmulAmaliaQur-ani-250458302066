@@ -13,6 +13,8 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class SubmissionResource extends Resource
 {
@@ -46,5 +48,11 @@ class SubmissionResource extends Resource
             'create' => CreateSubmission::route('/create'),
             'edit' => EditSubmission::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->whereIn('assignment_id', Auth::user()->dosen->assignments()->pluck('id'));
     }
 }

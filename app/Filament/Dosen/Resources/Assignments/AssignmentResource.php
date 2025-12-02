@@ -13,6 +13,8 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class AssignmentResource extends Resource
 {
@@ -48,5 +50,9 @@ class AssignmentResource extends Resource
         ];
     }
 
-    
+        public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->where('dosen_id', Auth::user()->dosen->id);
+    }
 }

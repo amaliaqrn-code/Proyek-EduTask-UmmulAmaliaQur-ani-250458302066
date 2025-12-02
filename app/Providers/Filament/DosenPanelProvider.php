@@ -26,8 +26,9 @@ class DosenPanelProvider extends PanelProvider
         return $panel
             ->id('dosen')
             ->path('dosen')
+            ->authGuard('web')
             ->brandName('EduTask')
-            ->login()
+            ->login(false)
             ->registration()
             ->colors([
                 'primary' => Color::Purple,
@@ -36,11 +37,12 @@ class DosenPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Dosen/Pages'), for: 'App\Filament\Dosen\Pages')
             ->pages([
                 Dashboard::class,
+                \App\Filament\Pages\Logout::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Dosen/Widgets'), for: 'App\Filament\Dosen\Widgets')
             ->widgets([
                 AccountWidget::class,
-                FilamentInfoWidget::class,
+                // FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

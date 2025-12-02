@@ -14,7 +14,7 @@ class FeedbackPage extends Component
         $feedbacks = Auth::user()
             ->mahasiswa
             ->feedbacks()
-            ->with(['dosen.user', 'assignment.course'])
+            ->with(['dosen.user', 'submission.assignment.course'])
             ->latest()
             ->get();
 

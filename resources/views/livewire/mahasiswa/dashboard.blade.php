@@ -10,7 +10,7 @@
             <a href="{{ route('mahasiswa.courses.index') }}" style="text-decoration:none;">
                 <div class="dashboard-card">
                     <h5>Total Mata Kuliah</h5>
-                    <h3>{{ Auth::user()->mahasiswa->courses->count() }}</h3>
+                    <h3>{{ Auth::user()->mahasiswa?->courses?->count() ?? 0 }}</h3>
                 </div>
             </a>
         </div>

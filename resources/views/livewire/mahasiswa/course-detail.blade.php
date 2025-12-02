@@ -29,7 +29,7 @@
         <p class="text-white">Tidak ada tugas.</p>
     @endforelse
 
-    <a href="{{ route('mahasiswa.mahasiswa.forum', $course->id) }}" class="btn btn-primary">
+    <a href="{{ route('mahasiswa.forum.index', $course->id) }}" class="btn btn-primary">
         Forum Diskusi
     </a>
 

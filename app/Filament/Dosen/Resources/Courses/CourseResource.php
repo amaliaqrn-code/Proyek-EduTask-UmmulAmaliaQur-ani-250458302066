@@ -2,8 +2,8 @@
 
 namespace App\Filament\Dosen\Resources\Courses;
 
+use App\Filament\Dosen\Resources\CourseResource\Pages\EditCourse;
 use App\Filament\Dosen\Resources\Courses\Pages\CreateCourse;
-use App\Filament\Dosen\Resources\Courses\Pages\EditCourse;
 use App\Filament\Dosen\Resources\Courses\Pages\ListCourses;
 use App\Filament\Dosen\Resources\Courses\Schemas\CourseForm;
 use App\Filament\Dosen\Resources\Courses\Tables\CoursesTable;
@@ -23,7 +23,7 @@ class CourseResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBookOpen;
 
-    protected static ?string $recordTitleAttribute = 'course';
+    protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Schema $schema): Schema
     {

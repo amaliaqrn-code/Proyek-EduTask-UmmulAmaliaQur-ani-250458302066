@@ -12,10 +12,16 @@ class Feedback extends Model
 use HasFactory;
 
 
-protected $table = 'feedback'; // explicit since table name is singular in your ERD
+protected $table = 'feedback';
 
 
-protected $fillable = ['submission_id', 'dosen_id', 'mahasiswa_id', 'comment', 'score'];
+protected $fillable = [
+    'submission_id',
+    'dosen_id',
+    'mahasiswa_id',
+    'comment',
+    'score'
+    ];
 
 
 public function submission()

@@ -31,7 +31,7 @@
             </tbody>
         </table>
         <div class="mt-3 text-center">
-            {{ $availableCourses->links() }}
+            {{ $availableCourses->links('pagination::bootstrap-5') }}
         </div>
     </div>
 </div>

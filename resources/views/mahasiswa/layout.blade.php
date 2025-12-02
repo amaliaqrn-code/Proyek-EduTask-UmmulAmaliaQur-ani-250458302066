@@ -21,79 +21,18 @@
     @livewireStyles
 </head>
 <body>
-
-<div class="container-fluid mahasiswa-layout">
-    <div class="row">
+    <div class="container-fluid mahasiswa-layout">
+        <div class="row">
         {{-- Nav --}}
-       @livewire('partials.navbar')
-
-        {{-- SIDEBAR --}}
-        <aside class="col-md-3 col-lg-2 mahasiswa-sidebar">
-
-            <h6 class="sidebar-title px-3 mb-3">Menu</h6>
-
-            <ul class="nav flex-column small px-2">
-
-                <li class="nav-item mb-1">
-                    @if(auth()->user()->role === 'mahasiswa')
-                    <a class="sidebar-link" href="{{ route('mahasiswa.dashboard') }}">
-                        <i class="bi bi-clipboard-check me-1"></i> Dashboard
-                    </a>
-                    @endif
-                </li>
-
-                <li class="nav-item mb-1">
-                    <a class="sidebar-link" href="{{ route('mahasiswa.courses.index') }}">
-                        <i class="bi bi-book me-1"></i> Mata Kuliah
-                    </a>
-                </li>
-
-                <li class="nav-item mb-1">
-                    <a class="sidebar-link" href="{{ route('mahasiswa.assignments.index') }}">
-                        <i class="bi bi-list-check me-1"></i> Tugas Saya
-                    </a>
-                </li>
-
-                <li class="nav-item mb-1">
-                    <a class="sidebar-link" href="{{ route('mahasiswa.materials.index') }}">
-                        <i class="bi bi-file-earmark-text me-1"></i> Materi
-                    </a>
-                </li>
-
-                <li class="nav-item mb-1">
-                    <a class="sidebar-link" href="{{ route('mahasiswa.courses.index') }}">
-                        <i class="bi bi-chat-dots me-1"></i> Forum
-                    </a>
-                </li>
-
-                <li class="nav-item mb-1">
-                    <a class="sidebar-link" href="{{ route('mahasiswa.bookmarks.index') }}">
-                        <i class="bi bi-bookmark-fill me-1"></i> Bookmark
-                    </a>
-                </li>
-
-                <li class="nav-item mb-1">
-                    <a class="sidebar-link" href="{{ route('mahasiswa.feedback.index') }}">
-                        <i class="bi bi-people-fill me-1"></i> Feedback Dosen
-                    </a>
-                </li>
-
-                <li class="nav-item mb-1">
-                    <a class="sidebar-link" href="{{ route('mahasiswa.courses.pick') }}">
-                        <i class="bi bi-plus-circle me-1"></i> Tambah Mata Kuliah
-                    </a>
-                </li>
-            </ul>
-        </aside>
-
-        {{-- CONTENT --}}
-        <section class="col-md-9 col-lg-10 mahasiswa-content">
-            {{ $slot }}
-        </section>
-
+        @livewire('partials.navbar')
+            {{-- SIDEBAR --}}
+            @livewire('partials.sidebar')
+            {{-- CONTENT --}}
+            <section class="col-md-9 col-lg-10 mahasiswa-content">
+                {{ $slot }}
+            </section>
+        </div>
     </div>
-</div>
-
 @livewireScripts
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -103,15 +42,12 @@
         }
     }
     document.addEventListener("livewire:init", () => {
-
         Livewire.hook('message.processed', () => {
             refreshLucideIcons();
         });
-
         document.addEventListener("livewire:navigated", () => {
             refreshLucideIcons();
         });
-
         refreshLucideIcons();
     });
 </script>

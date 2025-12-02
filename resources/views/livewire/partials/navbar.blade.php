@@ -1,8 +1,6 @@
-<header>
 <nav class="navbar navbar-expand-lg shadow-sm">
     <div class="container">
 
-        {{-- Brand --}}
         <a class="navbar-brand nav-brand text-white" href="{{ route('home') }}">
             <h1>EduTask</h1>
         </a>
@@ -34,7 +32,7 @@
                     <a href="{{ route('login') }}" class="btn btn-login">Login</a>
                 </li>
                 @else
-                {{-- Mahasiswa only --}}
+                {{-- hanya untuk mahasiswa --}}
                 @if(auth()->user()->role === 'mahasiswa')
                 <li class="nav-menu">
                     <a href="{{ route('mahasiswa.notifications') }}" class="nav-link position-relative text-white">
@@ -56,7 +54,7 @@
                 {{-- Profile Dropdown --}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle d-flex align-items-center"
-                       href="#" id="navbarDropdown" role="button"
+                       href="{{ route('mahasiswa.dashboard') }}" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown">
                         @php
                             $photo = 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name);
@@ -66,6 +64,11 @@
 
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         @if(auth()->user()->role === 'mahasiswa')
+                        <li>
+                            <a class="dropdown-item" href="{{ route('mahasiswa.dashboard') }}">
+                                Dashboard
+                            </a>
+                        </li>
                         <li>
                             <a class="dropdown-item" href="{{ route('mahasiswa.profile.edit') }}">
                                 Lengkapi Profil
@@ -83,10 +86,7 @@
                     </ul>
                 </li>
                 @endguest
-
             </ul>
-
         </div>
     </div>
 </nav>
-</header>

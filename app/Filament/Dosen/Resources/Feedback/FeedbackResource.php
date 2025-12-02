@@ -14,6 +14,8 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class FeedbackResource extends Resource
 {
@@ -69,4 +71,11 @@ class FeedbackResource extends Resource
         return $data;
     }
 
+    public static function getEloquentQuery(): Builder
+    {
+        $courseId = Auth::user()->course->id ?? null;
+
+        return parent::getEloquentQuery()
+            ->when($courseId, fn ($q) => $q->where('course_id', $courseId));
+    }
 }

@@ -6,13 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 class Assignment extends Model {
 use HasFactory;
 
-protected $fillable = ['course_id', 'title', 'description', 'deadline', 'dosen_id'];
+protected $fillable = [
+    'course_id',
+    'title',
+    'description',
+    'deadline',
+    'dosen_id'
+];
+
 protected $casts = [
     'deadline' => 'datetime',
   ];
 
 public function course() {
-    return $this->belongsTo(Course::class);
+    return $this->belongsTo(Course::class, 'dosen_id');
 }
 
 public function dosen() {

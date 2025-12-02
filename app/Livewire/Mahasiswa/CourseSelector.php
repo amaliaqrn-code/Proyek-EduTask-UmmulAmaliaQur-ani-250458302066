@@ -7,16 +7,21 @@ use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
+use Livewire\WithPagination;
 
 #[Layout('mahasiswa.layout')]
-class CourseSelector extends Component
-{
+class CourseSelector extends Component {
+    use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
+    protected $queryString = ['page'];
+
     public function addCourse($courseId)
     {
-        // Ambil mahasiswa_id dari user yang login
+        // ambil mahasiswa_id dari user
         $mahasiswaId = Auth::user()->mahasiswa->id;
 
-        // Cek apakah sudah terdaftar
+        // Cek udah terdaftar pa belom
         $exists = DB::table('course_students')
             ->where('course_id', $courseId)
             ->where('mahasiswa_id', $mahasiswaId)
@@ -27,7 +32,7 @@ class CourseSelector extends Component
             return;
         }
 
-        // Simpan jika belum ada
+        // simpan kalo belum ada
         DB::table('course_students')->insert([
             'course_id' => $courseId,
             'mahasiswa_id' => $mahasiswaId,

@@ -30,7 +30,7 @@ Route::middleware(['auth', 'role:mahasiswa'])->prefix('mahasiswa')->name('mahasi
 
     // Assignments
     Route::get('/assignments', \App\Livewire\Mahasiswa\Assignments::class)->name('assignments.index');
-    Route::get('/assignments/{assignment}', \App\Livewire\Mahasiswa\AssignmentDetail::class)->name('assignments.show');
+    Route::get('/assignments/{id}', \App\Livewire\Mahasiswa\AssignmentDetail::class)->name('assignments.show');
 
     // Materials
     Route::get('/materials', \App\Livewire\Mahasiswa\Materials::class)->name('materials.index');

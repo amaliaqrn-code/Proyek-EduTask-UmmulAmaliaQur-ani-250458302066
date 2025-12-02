@@ -16,33 +16,46 @@ use Illuminate\Support\Facades\Auth;
 class FeedbackForm
 {
     public static function configure(Schema $schema): Schema
-{
-    return $schema
-        ->components([
-            // Submission ID otomatis dari URL
-            Hidden::make('submission_id')
-                ->default(fn () => request()->query('submission_id'))
-                ->required(),
+    {
+        return $schema
+            ->components([
+                Hidden::make('submission_id')
+                    ->default(fn() => request()->query('submission_id'))
+                    ->required(),
 
-            TextInput::make('nama_mahasiswa')
-                ->label('Nama Mahasiswa')
-                ->dehydrated(false)
-                ->default(fn ($record) => $record?->mahasiswa?->user?->name),
+                Hidden::make('mahasiswa_id')
+                    ->default(
+                        fn() =>
+                        optional(
+                            Submission::with('mahasiswa')->find(request()->query('submission_id'))
+                        )->mahasiswa?->id
+                    )
+                    ->required(),
 
-            // Comment
-            Textarea::make('comment')
-                ->label('Feedback')
-                ->required()
-                ->columnSpanFull(),
+                TextInput::make('mahasiswa_nama')
+                    ->label('Nama Mahasiswa')
+                    ->default(
+                        fn() =>
+                        optional(
+                            Submission::with('mahasiswa.user')->find(request()->query('submission_id'))
+                        )->mahasiswa?->user?->name
+                    )
+                    ->disabled()
+                    ->dehydrated(false),
 
-            // Score
-            TextInput::make('score')
-                ->numeric()
-                ->required(),
+                // Comment
+                Textarea::make('comment')
+                    ->label('Feedback')
+                    ->required()
+                    ->columnSpanFull(),
 
-            // Dosen otomatis
-            Hidden::make('dosen_id')
-                ->default(fn () => Dosen::where('user_id', Auth::id())->value('id')),
-        ]);
-   }
+                // Score
+                TextInput::make('score')
+                    ->numeric()
+                    ->required(),
+
+                Hidden::make('dosen_id')
+                    ->default(fn() => Dosen::where('user_id', Auth::id())->value('id')),
+            ]);
+    }
 }

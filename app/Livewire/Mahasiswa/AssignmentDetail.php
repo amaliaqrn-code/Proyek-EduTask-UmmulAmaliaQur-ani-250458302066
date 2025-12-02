@@ -25,7 +25,7 @@ class AssignmentDetail extends Component
     public function submit()
 {
     $this->validate([
-        'file' => 'required|mimes:pdf,doc,docx,zip',
+        'file' => 'required|mimes:pdf,doc,docx,zip,jpeg',
     ]);
 
     $mahasiswaId = Auth::user()->mahasiswa->id;

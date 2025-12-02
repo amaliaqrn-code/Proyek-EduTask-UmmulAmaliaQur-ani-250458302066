@@ -7,22 +7,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class ActivityPoint extends Model
-{
-use HasFactory;
+class ActivityPoint extends Model {
+
+    use HasFactory;
+
+    protected $fillable = [
+        'mahasiswa_id',
+        'submission_id',
+        'points',
+        'badge'
+    ];
 
 
-protected $fillable = ['mahasiswa_id', 'submission_id', 'points', 'badge'];
+public function mahasiswa() {
+    return $this->belongsTo(Mahasiswa::class);
+    }
 
-
-public function mahasiswa()
-{
-return $this->belongsTo(Mahasiswa::class);
-}
-
-
-public function submission()
-{
-return $this->belongsTo(Submission::class);
-}
+public function submission() {
+    return $this->belongsTo(Submission::class);
+    }
 }

@@ -27,13 +27,13 @@
 
             <p class="mb-2">
                 <strong>Feedback Dosen:</strong><br>
-                {{ $fb->feedback }}
+                {{ $fb->comment }}
             </p>
 
             <p class="mb-2">
                 <strong>Nilai:</strong>
-                @if($fb->nilai !== null)
-                    <span class="badge bg-primary">{{ $fb->nilai }}</span>
+                @if($fb->score !== null)
+                    <span class="badge bg-primary">{{ $fb->score }}</span>
                 @else
                     <span class="text-muted">Belum ada nilai</span>
                 @endif

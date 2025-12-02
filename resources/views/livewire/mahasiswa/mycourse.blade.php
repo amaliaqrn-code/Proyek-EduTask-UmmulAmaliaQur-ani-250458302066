@@ -7,7 +7,7 @@
         <div class="row">
             @foreach ($courses as $course)
                 <div class="col-md-4 mb-3">
-                    <div class="dashboard-card p-3">
+                    <div class="dashboard-card p-3 h-100">
                         <strong>{{ $course->code }}</strong>
                         <p>{{ $course->name }}</p>
 

@@ -10,6 +10,11 @@ class CreateAssignment extends CreateRecord
 {
     protected static string $resource = AssignmentResource::class;
 
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
+
     protected function afterCreate(): void
     {
         // Ambil course dari assignment yang baru dibuat

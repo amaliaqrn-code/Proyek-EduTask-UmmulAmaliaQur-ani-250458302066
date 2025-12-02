@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,6 +49,15 @@ class AuthController extends Controller
             'email'    => $request->email,
             'password' => bcrypt($request->password),
             'role'     => 'mahasiswa',
+        ]);
+
+            Mahasiswa::create([
+            'user_id' => $user->id,
+            'nim' => null,
+            'major' => null,
+            'class' => null,
+            'year' => null,
+            'photo' => null,
         ]);
 
         Auth::login($user);

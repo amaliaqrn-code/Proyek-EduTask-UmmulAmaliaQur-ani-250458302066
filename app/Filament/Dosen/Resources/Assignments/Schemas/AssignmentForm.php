@@ -34,7 +34,7 @@ class AssignmentForm
                     ->label('Nama Dosen')
                     ->required()
                     ->default(function () {
-                        return Auth::user()->dosen->id; // ambil ID dosen dari tabel dosens
+                        return Auth::user()->dosen->id;
                     })
             ]);
     }

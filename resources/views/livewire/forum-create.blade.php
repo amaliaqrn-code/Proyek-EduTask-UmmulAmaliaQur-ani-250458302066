@@ -1,22 +1,71 @@
-<div class="container mt-4 text-white">
+<div class="create-post-container text-white">
 
-    <h2>Buat Postingan – {{ $course->name }}</h2>
+    {{-- Back Button --}}
+    <div class="mb-4">
+        <a href="{{ route('mahasiswa.forum.index', $course->id) }}"
+           class="btn btn-primary">
+            <i class="bi bi-arrow-left"></i> Kembali ke Forum
+        </a>
+    </div>
 
-    <form wire:submit.prevent="submit">
+    {{-- Create Post Form --}}
+    <div class="create-post-card">
 
-        <div class="mb-3">
-            <label>Judul</label>
-            <input type="text" wire:model="title" class="form-control">
-            @error('title') <small>{{ $message }}</small> @enderror
-        </div>
+        <h2>
+            <i class="bi bi-pencil-square"></i>
+            Buat Postingan Baru
+        </h2>
+        <p class="text-muted mb-4">{{ $course->name }} - {{ $course->code }}</p>
 
-        <div class="mb-3">
-            <label>Isi Postingan</label>
-            <textarea wire:model="content" class="form-control" rows="6"></textarea>
-            @error('content') <small>{{ $message }}</small> @enderror
-        </div>
+        <form wire:submit.prevent="submit">
 
-        <button class="btn btn-primary">Posting</button>
+            {{-- Title Input --}}
+            <div class="mb-4">
+                <label class="form-label">
+                    <i class="bi bi-card-heading"></i> Judul Postingan
+                </label>
+                <input
+                    type="text"
+                    wire:model="title"
+                    class="form-control"
+                    placeholder="Masukkan judul diskusi yang menarik...">
+                @error('title')
+                    <small class="text-danger d-block mt-2">
+                        <i class="bi bi-exclamation-circle"></i> {{ $message }}
+                    </small>
+                @enderror
+            </div>
 
-    </form>
+            {{-- Content Textarea --}}
+            <div class="mb-4">
+                <label class="form-label">
+                    <i class="bi bi-chat-left-text"></i> Isi Postingan
+                </label>
+                <textarea
+                    wire:model="content"
+                    class="form-control"
+                    rows="8"
+                    placeholder="Tulis pertanyaan, ide, atau topik diskusi kamu di sini..."></textarea>
+                @error('content')
+                    <small class="text-danger d-block mt-2">
+                        <i class="bi bi-exclamation-circle"></i> {{ $message }}
+                    </small>
+                @enderror
+            </div>
+
+            {{-- Submit Button --}}
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-send"></i> Posting
+                </button>
+                <a href="{{ route('mahasiswa.forum.index', $course->id) }}"
+                   class="btn btn-secondary">
+                    <i class="bi bi-x-circle"></i> Batal
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+
 </div>

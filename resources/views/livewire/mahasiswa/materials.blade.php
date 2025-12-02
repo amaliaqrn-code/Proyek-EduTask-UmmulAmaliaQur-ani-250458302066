@@ -3,16 +3,6 @@
         <h2 class="text-white">Materi Kuliah</h2>
     </div>
 
-    <div class="mb-3">
-        <label class="text-white fw-bold">Filter Mata Kuliah</label>
-        <select wire:model="selectedCourse" class="form-select">
-            <option value="all">Semua Mata Kuliah</option>
-            @foreach($courses as $course)
-                <option value="{{ $course->id }}">{{ $course->name }}</option>
-            @endforeach
-        </select>
-    </div>
-    
     <div class="dashboard-card p-3">
         @if($materials->count() === 0)
             <p class="text-white">Belum ada materi untuk ditampilkan.</p>
@@ -28,7 +18,7 @@
 
                         <div>
                             <strong>{{ $m->title }}</strong><br>
-                            <small class="text-white">{{ $m->course->name }}</small>
+                            <small class="text-dark">{{ $m->course->name }}</small>
                         </div>
                         <div class="d-flex align-items-center gap-2">
                             {{-- LIKE --}}
@@ -36,7 +26,7 @@
                                 wire:click="toggleLike({{ $m->id }})"
                                 class="material-icon-btn">
                                 @if(isset($liked[$m->id]) && $liked[$m->id])
-                                    <i data-lucide="heart" style="color:#ff4d6d;"></i>
+                                    <i data-lucide="heart" style="color:#d71c3e;"></i>
                                 @else
                                     <i data-lucide="heart"></i>
                                 @endif

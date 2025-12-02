@@ -35,11 +35,11 @@ public function materials()
 return $this->hasMany(Material::class);
 }
 
-
 public function assignments()
 {
-return $this->hasMany(Assignment::class, 'dosen_id');
+    return $this->hasMany(Assignment::class, 'dosen_id');
 }
+
 
 
 public function feedbacks()
